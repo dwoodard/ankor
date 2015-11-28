@@ -1,6 +1,6 @@
 
-web:
-  build: "./web/"
+webserver:
+  build: "./web/server"
   container_name: web-container
   links:
   - db
