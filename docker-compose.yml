@@ -1,12 +1,35 @@
 
-webserver:
-  build: "./web/server"
-  container_name: web-container
-  links:
-  - db
+web:
+  build: "./web/server/"
+  container_name: web
+  volumes:
+   - /c/Users/dwoodard/Sites/laravel:/var/www/html
+# links:
+# - db:mysql
   ports:
   - "80:80"
-db:
-  image: mysql:5.6
-  environment:
-     - MYSQL_ROOT_PASSWORD=verysecret
+  - "443:443"
+
+
+#db:
+#  image: mysql:5.6
+#  container_name: mysql
+#  environment:
+#     - MYSQL_ROOT_PASSWORD=root
+#
+#
+#phpmyadmin:
+#  image: corbinu/docker-phpmyadmin
+#  container_name: phpmyadmin
+#  links:
+#    - db:mysql
+#  ports:
+#    - 8181:80
+#  environment:
+#    MYSQL_USERNAME: root
+#    MYSQL_ROOT_PASSWORD: root
+
+
+#queue:
+#  image: beanstalkd
+#  container_name: queue
