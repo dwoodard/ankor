@@ -4,7 +4,7 @@ MAINTAINER Dustin Woodard <dustin.woodard@gmail.com>
 
 #  Installs Utils and Apache
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get -qq update && apt-get install -y \
  apache2 \
  git-core \
  vim \
@@ -82,9 +82,10 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN echo "America/Denver" | sudo tee /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 
+RUN mkdir -p /etc/ssl/server/certs
 
 # Make CERT
-RUN openssl req -new -newkey rsa:4096 -days 3652 -nodes -x509 -subj "/C=US/ST=UT/L=Ogden/O=IT/CN=docker.dev" -keyout /var/www/html/server.pem  -out /var/www/html/server.cert 
+RUN openssl req -new -newkey rsa:4096 -days 3652 -nodes -x509 -subj "/C=US/ST=UT/L=Ogden/O=IT/CN=docker.dev" -keyout /etc/ssl/server/certs/server.pem  -out /etc/ssl/server/certs/server.cert
 
 ADD app.conf /etc/apache2/sites-available/
 
@@ -96,4 +97,4 @@ VOLUME ["/var/www/html/"]
 EXPOSE 80
 EXPOSE 443
 
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+CMD /usr/sbin/apache2ctl -D FOREGROUND
