@@ -2,7 +2,6 @@ web:
   build: ./docker/web/server/
   container_name: web
   volumes:
-   # - "./testify:/var/www/html"
   - .:/var/www/html
   links:
   - db:mysql
