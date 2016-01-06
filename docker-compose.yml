@@ -1,9 +1,9 @@
-
 web:
-  build: ./web/server/
+  build: ./docker/web/server/
   container_name: web
   volumes:
-   - /c/Users/dustinwoodard/Sites/chemblackbox:/var/www/html
+   # - "./testify:/var/www/html"
+  - .:/var/www/html
   links:
   - db:mysql
   ports:
@@ -16,6 +16,8 @@ db:
      - MYSQL_ROOT_PASSWORD=root
   ports:
   - 3306:3306
+  volumes:
+  - .:/var/lib/mysql
 
 
 phpmyadmin:
