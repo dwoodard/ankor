@@ -16,7 +16,7 @@ db:
   ports:
   - 3306:3306
   volumes:
-  - .:/var/lib/mysql
+  - ./data/mysql:/var/lib/mysql
 
 
 phpmyadmin:
