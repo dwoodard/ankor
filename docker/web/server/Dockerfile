@@ -49,27 +49,27 @@ RUN sed -i "s#\#ServerName www.example.com#ServerName localhost#" /etc/apache2/s
 
 RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
-RUN sed -i "s/disable_functions = .*/disable_functions = /" /etc/php5.6/cli/php.ini
+RUN sed -i "s/disable_functions = .*/disable_functions = /" /etc/php/5.6/cli/php.ini
 
 # Set up php.ini (both cli and apache2)
-RUN sed -i "s/.*post_max_size.*/post_max_size = 3G/" /etc/php5.6/cli/php.ini
-RUN sed -i "s/.*post_max_size.*/post_max_size = 3G/" /etc/php5.6/apache2/php.ini
+RUN sed -i "s/.*post_max_size.*/post_max_size = 3G/" /etc/php/5.6/cli/php.ini
+RUN sed -i "s/.*post_max_size.*/post_max_size = 3G/" /etc/php/5.6/apache2/php.ini
 
 #
-RUN sed -i "s/.*upload_max_filesize.*/upload_max_filesize = 3G/" /etc/php5.6/cli/php.ini
-RUN sed -i "s/.*upload_max_filesize.*/upload_max_filesize = 3G/" /etc/php5.6/apache2/php.ini
+RUN sed -i "s/.*upload_max_filesize.*/upload_max_filesize = 3G/" /etc/php/5.6/cli/php.ini
+RUN sed -i "s/.*upload_max_filesize.*/upload_max_filesize = 3G/" /etc/php/5.6/apache2/php.ini
 
 # max_input_time
-RUN sed -i "s/.*max_input_time.*/max_input_time = 9000/" /etc/php5.6/apache2/php.ini
-RUN sed -i "s/.*max_input_time.*/max_input_time = 9000/" /etc/php5.6/apache2/php.ini
+RUN sed -i "s/.*max_input_time.*/max_input_time = 9000/" /etc/php/5.6/apache2/php.ini
+RUN sed -i "s/.*max_input_time.*/max_input_time = 9000/" /etc/php/5.6/apache2/php.ini
 
 # max_file_uploads
-RUN sed -i "s/.*max_file_uploads.*/max_file_uploads = 100/" /etc/php5.6/apache2/php.ini
-RUN sed -i "s/.*max_file_uploads.*/max_file_uploads = 100/" /etc/php5.6/apache2/php.ini
+RUN sed -i "s/.*max_file_uploads.*/max_file_uploads = 100/" /etc/php/5.6/apache2/php.ini
+RUN sed -i "s/.*max_file_uploads.*/max_file_uploads = 100/" /etc/php/5.6/apache2/php.ini
 
 # memory_limit
-RUN sed -i "s/.*memory_limit .*/memory_limit = 1G/" /etc/php5.6/apache2/php.ini
-RUN sed -i "s/.*memory_limit .*/memory_limit = 1G/" /etc/php5.6/apache2/php.ini
+RUN sed -i "s/.*memory_limit .*/memory_limit = 1G/" /etc/php/5.6/apache2/php.ini
+RUN sed -i "s/.*memory_limit .*/memory_limit = 1G/" /etc/php/5.6/apache2/php.ini
 
 # Restarting Apache
 RUN service apache2 restart
