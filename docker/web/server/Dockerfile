@@ -22,19 +22,19 @@ ENV APACHE_LOG_DIR /var/log/apache2
 
 #  Installs PHP   ##############
 RUN apt-get update
-RUN add-apt-repository -y ppa:ondrej/php5-5.6
+RUN add-apt-repository -y ppa:ondrej/php
 
 #  Installs PHP   ##############
 RUN apt-get update && apt-get install -y --force-yes\
- php5 \
+ php5.6 \
  apache2 \
- libapache2-mod-php5 \
- php5-curl \
- php5-gd \
- php5-mcrypt \
+ libapache2-mod-php5.6 \
+ php5.6-curl \
+ php5.6-gd \
+ php5.6-mcrypt \
  mysql-server-5.5 \
- php5-mysql\
- php5-readline
+ php5.6-mysql\
+ php5.6-readline
 
 RUN a2enmod rewrite
 
