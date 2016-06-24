@@ -71,7 +71,7 @@ RUN sed -i "s/.*max_file_uploads.*/max_file_uploads = 100/" /etc/php/5.6/apache2
 RUN sed -i "s/.*memory_limit .*/memory_limit = 1G/" /etc/php/5.6/apache2/php.ini
 RUN sed -i "s/.*memory_limit .*/memory_limit = 1G/" /etc/php/5.6/apache2/php.ini
 
-# Restarting Apache
+# Restarting Apache 
 RUN service apache2 restart
 
 # Composer is the future. But you knew that did you Nice job.
