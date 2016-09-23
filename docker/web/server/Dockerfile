@@ -34,7 +34,9 @@ RUN apt-get update && apt-get install -y --force-yes\
  php5.6-mcrypt \
  mysql-server-5.5 \
  php5.6-mysql\
- php5.6-readline
+ php5.6-readline\
+ php5.6-simplexml\
+ php5.6-xml
 
 RUN a2enmod rewrite
 
