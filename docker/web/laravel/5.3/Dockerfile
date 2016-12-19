@@ -25,6 +25,9 @@ RUN sed -i "s#.*DocumentRoot /var/www/html#\tDocumentRoot /var/www/html/public#"
 RUN sed -i "s#\#ServerName www.example.com#ServerName localhost#" /etc/apache2/sites-enabled/000-default.conf
 RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
+RUN service apache2 restart
+RUN a2enmod rewrite
+
 # Composer is the future. But you knew that did you Nice job.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
