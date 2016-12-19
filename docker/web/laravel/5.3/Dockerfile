@@ -11,7 +11,7 @@ RUN chown -R www-data:www-data /var/www/
 
 RUN apt-get -qq update && apt-get install -y \
  git-core \
-#vim \
+ vim \
 #curl \
 #wget \
 #software-properties-common \
