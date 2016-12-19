@@ -23,6 +23,7 @@ RUN apt-get -qq update && apt-get install -y \
 RUN mkdir /var/www/html/public/
 RUN sed -i "s#.*DocumentRoot /var/www/html#\tDocumentRoot /var/www/html/public#" /etc/apache2/sites-enabled/000-default.conf
 RUN sed -i "s#\#ServerName www.example.com#ServerName localhost#" /etc/apache2/sites-enabled/000-default.conf
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 # Composer is the future. But you knew that did you Nice job.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
