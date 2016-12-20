@@ -18,6 +18,9 @@ RUN apt-get -qq update && apt-get install -y \
  unzip \
 && apt-get clean
 
+#PHP Packages
+RUN apt-get install php-mysql
+
 
 # Setting document root
 RUN mkdir /var/www/html/public/

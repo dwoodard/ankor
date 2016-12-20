@@ -1,5 +1,6 @@
 web:
-  build: ./docker/web/laravel/5.3
+  image: dwoodard/ankor:php7_laravel
+#  build: ./docker/web/laravel/5.3
   container_name: ${CONTAINER_NAME}
   environment:
      - PHP_VERSION=7.1
