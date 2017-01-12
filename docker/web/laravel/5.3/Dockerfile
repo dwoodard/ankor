@@ -18,9 +18,6 @@ RUN apt-get -qq update && apt-get install -y \
  unzip \
 && apt-get clean
 
-#PHP Packages
-RUN apt-get install php-mysql
-
 
 # Setting document root
 RUN mkdir /var/www/html/public/
@@ -49,6 +46,22 @@ ADD app.conf /etc/apache2/sites-available/
 
 RUN a2ensite app.conf
 RUN a2enmod ssl
+
+
+RUN docker-php-source extract \
+&& apt-get update \
+&& apt-get install libmcrypt-dev libldap2-dev nano -y \
+&& rm -rf /var/lib/apt/lists/* \
+&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
+&& docker-php-ext-install ldap pdo pdo_mysql \
+&& a2enmod rewrite \
+&& a2enmod ssl \
+&& docker-php-source delete
+COPY src/ /var/www/html/
+
+
+
+
 
 VOLUME ["/var/www/html/"]
 
