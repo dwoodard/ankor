@@ -49,12 +49,14 @@ RUN a2enmod ssl
 
 
 RUN docker-php-source extract \
+RUN docker-php-ext-installl extract \
 && apt-get update \
 && apt-get install vim -y \
-&& docker-php-ext-install ldap pdo pdo_mysql \
+&& docker-php-ext-install pdo pdo_mysql \
 && a2enmod rewrite \
 && a2enmod ssl \
 && docker-php-source delete
+&& docker-php-ext-installl delete
 
 VOLUME ["/var/www/html/"]
 
