@@ -51,7 +51,7 @@ RUN a2enmod ssl
 RUN docker-php-source extract \
 && apt-get update \
 && apt-get install vim -y \
-&& docker-php-ext-install mysqli mbstring simplexml curl mysqlnd pdo pdo_mysql zip \
+&& docker-php-ext-install pdo pdo_mysql mysqli mbstring simplexml curl mysqlnd zip \
 && a2enmod rewrite \
 && a2enmod ssl \
 && docker-php-source delete
