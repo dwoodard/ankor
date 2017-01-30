@@ -55,7 +55,7 @@ RUN docker-php-ext-installl extract \
 && docker-php-ext-install pdo pdo_mysql \
 && a2enmod rewrite \
 && a2enmod ssl \
-&& docker-php-source delete
+&& docker-php-source delete \
 && docker-php-ext-installl delete
 
 VOLUME ["/var/www/html/"]
