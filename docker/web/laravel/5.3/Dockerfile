@@ -64,7 +64,6 @@ RUN apt-get install -y wget && \
     apt-get update && apt-get install -y google-chrome-stable && \
     apt-get install -y xvfb
 
-VOLUME ["/var/www/html/"]
 
 EXPOSE 80
 EXPOSE 443
