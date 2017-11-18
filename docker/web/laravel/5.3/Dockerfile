@@ -67,8 +67,11 @@ RUN apt-get install -y wget && \
     apt-get install -y xvfb
 
 # ChromeDriver
-# https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip
-# /usr/local/chromedriver/
+RUN wget https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip
+RUN unzip chromedriver_linux64.zip
+RUN mv chromedriver /usr/bin/chromedriver
+RUN rm chromedriver_linux64.zip
+RUN chromedriver -v
 
 EXPOSE 80
 EXPOSE 443
