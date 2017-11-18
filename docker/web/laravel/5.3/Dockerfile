@@ -29,10 +29,11 @@ RUN service apache2 restart
 RUN a2enmod rewrite
 
 # Composer is the future. But you knew that did you Nice job.
-# RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN apt-get install nodejs -y
+RUN ln -s `which nodejs` /usr/bin/nodeg
+RUN node -v
 RUN php -r "unlink('composer-setup.php');"
 
 # Correct Time
@@ -65,6 +66,9 @@ RUN apt-get install -y wget && \
     apt-get update && apt-get install -y google-chrome-stable && \
     apt-get install -y xvfb
 
+# ChromeDriver
+# https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip
+# /usr/local/chromedriver/
 
 EXPOSE 80
 EXPOSE 443
