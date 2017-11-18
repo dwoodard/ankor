@@ -31,6 +31,7 @@ RUN a2enmod rewrite
 # Composer is the future. But you knew that did you Nice job.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN apt-get install nodejs -y
 RUN php -r "unlink('composer-setup.php');"
 
 # Correct Time
