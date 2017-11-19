@@ -30,18 +30,6 @@ RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 RUN service apache2 restart
 RUN a2enmod rewrite
 
-# Composer is the future. But you knew that did you Nice job.
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-RUN php -r "unlink('composer-setup.php');"
-
-#Node JS
-RUN apt-get update
-RUN apt-get install nodejs -y
-RUN apt-get install npm -y
-RUN apt-get install build-essential -y
-
-
 # Correct Time
 RUN echo "America/Denver" | tee /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
@@ -72,12 +60,31 @@ RUN apt-get install -y wget && \
     apt-get update && apt-get install -y google-chrome-stable && \
     apt-get install -y xvfb
 
+
+# Composer is the future. But you knew that did you Nice job.
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
+
+RUN apt-get update
+RUN apt-get install build-essential libssl-dev -y
+
+#Node 
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
+
+RUN apt-get install nodejs -y
+RUN apt-get install build-essential
+
+RUN npm -v
+RUN node -v
+
+
 # ChromeDriver
-RUN wget https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip
-RUN unzip chromedriver_linux64.zip
-RUN mv chromedriver /usr/bin/chromedriver
-RUN rm chromedriver_linux64.zip
-RUN chromedriver -v
+RUN wget https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip \
+&& unzip chromedriver_linux64.zip \
+&& mv chromedriver /usr/bin/chromedriver \
+&& rm chromedriver_linux64.zip \
+&& chromedriver -v
 
 EXPOSE 80
 EXPOSE 443
