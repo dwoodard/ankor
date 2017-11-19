@@ -19,6 +19,8 @@ RUN apt-get -qq update && apt-get install -y \
 #software-properties-common \
 
 
+
+
 # Setting document root
 RUN mkdir /var/www/html/public/
 RUN sed -i "s#.*DocumentRoot /var/www/html#\tDocumentRoot /var/www/html/public#" /etc/apache2/sites-enabled/000-default.conf
@@ -31,12 +33,14 @@ RUN a2enmod rewrite
 # Composer is the future. But you knew that did you Nice job.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
 
 #Node JS
+RUN apt-get update
 RUN apt-get install nodejs -y
-RUN ln -s `which nodejs` /usr/bin/node
-RUN node -v
-RUN php -r "unlink('composer-setup.php');"
+RUN apt-get install npm -y
+RUN apt-get install build-essential -y
+
 
 # Correct Time
 RUN echo "America/Denver" | tee /etc/timezone
