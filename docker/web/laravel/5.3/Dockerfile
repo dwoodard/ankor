@@ -12,11 +12,11 @@ RUN chown -R www-data:www-data /var/www/
 RUN apt-get -qq update && apt-get install -y \
  git-core \
  vim \
-#curl \
-#wget \
-#software-properties-common \
  unzip \
-&& apt-get clean
+ curl \
+ wget \
+ && apt-get clean
+#software-properties-common \
 
 
 # Setting document root
@@ -31,6 +31,8 @@ RUN a2enmod rewrite
 # Composer is the future. But you knew that did you Nice job.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+#Node JS
 RUN apt-get install nodejs -y
 RUN ln -s `which nodejs` /usr/bin/node
 RUN node -v
