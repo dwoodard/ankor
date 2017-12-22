@@ -69,7 +69,7 @@ RUN php -r "unlink('composer-setup.php');"
 RUN apt-get update
 RUN apt-get install build-essential libssl-dev -y
 
-#Node 
+#Node
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
 RUN apt-get install nodejs -y
@@ -87,6 +87,11 @@ RUN wget https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.z
 && mv chromedriver /usr/bin/chromedriver \
 && rm chromedriver_linux64.zip \
 && chromedriver -v
+
+#ImageMagick
+RUN apt-get update
+RUN apt-get install imagemagick -y
+
 
 EXPOSE 80
 EXPOSE 443
