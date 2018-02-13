@@ -89,8 +89,14 @@ RUN wget https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.z
 && chromedriver -v
 
 #ImageMagick
-RUN apt-get update
-RUN apt-get install imagemagick -y
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libmagickwand-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pecl install imagick-3.4.3 \
+    && docker-php-ext-enable imagick
+
 
 
 EXPOSE 80
