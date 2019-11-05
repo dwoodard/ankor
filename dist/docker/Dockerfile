@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:7.3-apache
 
 MAINTAINER Dustin Woodard <dustin.woodard@gmail.com>
 
@@ -18,12 +18,6 @@ RUN apt-get -qq update && apt-get install -y \
  wget \
  && apt-get clean
 #software-properties-common \
-
-# installs memcached and enables it in apache
-RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev \
-    && pecl install memcached-3.0.3 \
-    && docker-php-ext-enable memcached
-
 
 
 # Setting document root
@@ -100,8 +94,6 @@ RUN apt-get update \
 
 RUN pecl install imagick-3.4.3 \
     && docker-php-ext-enable imagick
-
-
 
 EXPOSE 80
 EXPOSE 443
